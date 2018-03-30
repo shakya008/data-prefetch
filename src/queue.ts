@@ -1,3 +1,8 @@
+/**
+* This is implememtation for queue.
+* Here we have options for batch push and batch pop
+* @author Shyam Singh <singh.shakya008@gmail.com>
+*/
 export class Queue<T> {
 	private _data: Array<T>;
 	private _capacity: number;

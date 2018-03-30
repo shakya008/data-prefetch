@@ -6,29 +6,40 @@ import { Queue } from './queue';
 
 
 export class PrefetchService<T> {
-	private _queue: Queue<T>;
-	private _hotObs$: Observable<T>;
+	protected _queue: Queue<T>;
+	protected _hotObs$: Observable<T>;
 	constructor(private _producer: ProducerService, minBufferSize: number) {
 		this._queue = new Queue<T>(minBufferSize);
 	}
+	/**
+	* This function is called to provide the data either
+	* from server or from cache.
+	*/
 	public getData(count: number): Observable<T> {
 		return Observable.create(obs => {
-			if (this._queue.isEmpty() && !this._producer.getNoServeStatus()) {
-				this.fetchData().subscribe(res => {
-					if (res) {
-						obs.next(this._queue.batchPop(count));
-					}
-				},
-				err => {
-					obs.error(err);
-				})
-			} else {
+			if (this._producer.getNoServeStatus()) {
 				obs.next(this._queue.batchPop(count));
+			} else {
+				if (this._queue.isEmpty()) {
+					this.fetchData().subscribe(res => {
+						obs.next(this._queue.batchPop(count));
+					},
+					err => {
+						obs.error(err);
+					})
+				} else {
+					obs.next(this._queue.batchPop(count));
+					if(this.doMoreFetch()) {
+						this.fetchData().subscribe();
+					}
+				}
 			}
 		})
 	}
-
-	private fetchData(): Observable<T> {
+	/**
+	* This function fetches the data from server.
+	*/
+	protected fetchData(): Observable<T> {
 		if (this._hotObs$) {
 			return this._hotObs$;
 		}
@@ -46,13 +57,12 @@ export class PrefetchService<T> {
 			err => {
 				obs.error(err);
 				this._hotObs$ = null;
-			})
-			obs.next();
+			});
 		}).share();
 		return this._hotObs$;
 	}
 
-	private doMoreFetch() {
+	protected doMoreFetch() {
 		if (this._producer.getNoServeStatus()) {
 			return false;
 		}

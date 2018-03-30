@@ -2,12 +2,14 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "dist",
+    "outDir": ".",
     "rootDir": ".",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "declaration": true,
+    "lib": ["ES5", "ES2015", "DOM", "ScriptHost"]
   },
   "exclude": [
     "node_modules"

@@ -1,12 +1,13 @@
 {
-  "name": "angular2-seed",
+  "name": "data-prefetch",
   "version": "1.0.0",
-  "description": "A simple starter Angular2 project",
+  "description": "Fetches data from server and stores locally",
   "scripts": {
     "build": "rimraf dist && webpack --progress",
     "watch": "npm run build -- --watch",
     "server": "webpack-dev-server --inline --progress --port 3000 --content-base src",
-    "start": "npm run server"
+    "start": "npm run server",
+    "tsc": "tsc -p tsconfig.json"
   },
 
   "dependencies": {

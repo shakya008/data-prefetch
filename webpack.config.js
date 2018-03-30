@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'main': './src/index.ts',
+    'main': './index.ts',
   },
 
   output: {
@@ -16,7 +16,7 @@ var webpackConfig = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'index.html'
     }),
 
   ],
