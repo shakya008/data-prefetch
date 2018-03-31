@@ -1,3 +1,12 @@
+/**
+* This service has the intelegency to fetch data from producer and cache it.
+* It maintains the defined minimum buffer in its queue. So when consumer asks for data by calling method getData(),
+* it will provide data from queue if present instantly and checkes if queue reduced to less than minimum buffer,
+* if so, calls the method fetchData() to fill the queue.
+* Main goal of this service is to provide the data to consumer instantly.
+* @author Shyam Singh<singh.shakya008@gmail.com>
+*/
+
 import { Observable } from 'rxjs';
 
 import { ProducerService } from './producer';
