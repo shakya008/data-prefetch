@@ -7,7 +7,7 @@ export class Queue<T> {
 	private _data: Array<T>;
 	private _capacity: number;
 	constructor(capacity: number) {
-		this._capacity = capacity;
+		this._capacity = capacity || 0;
 		this._data = new Array(0);
 	}
 	batchPush(items: Array<T>) {
@@ -30,5 +30,15 @@ export class Queue<T> {
 			return;
 		}
 		return this._data.splice(0, 1)[0];
+	}
+	clear(): void {
+		this._data = [];
+	}
+	setCapacity(capacity: number): number {
+		this._capacity = capacity;
+		return capacity;
+	}
+	getCapacity(): number {
+		return this._capacity;
 	}
 }

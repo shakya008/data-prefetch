@@ -1,0 +1,19 @@
+{
+  "name": "data-prefetch",
+  "version": "1.0.0",
+  "description": "Fetches data from server and stores locally",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "Shyam Singh <singh.shakya008@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakya008/prefetch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shakya008/prefetch/issues"
+  },
+  "dependencies": {
+    "rxjs": "^5.4.3"
+  }
+}

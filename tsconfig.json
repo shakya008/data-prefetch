@@ -8,7 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "declaration": true,
+    "declaration": false,
     "lib": ["ES5", "ES2015", "DOM", "ScriptHost"]
   },
   "exclude": [

@@ -8,8 +8,10 @@ import { Queue } from './queue';
 export class PrefetchService<T> {
 	protected _queue: Queue<T>;
 	protected _hotObs$: Observable<T>;
-	constructor(private _producer: ProducerService, minBufferSize: number) {
-		this._queue = new Queue<T>(minBufferSize);
+	private _bufferSize: number;
+	constructor(private _producer: ProducerService) {
+		this._bufferSize = 0;
+		this._queue = new Queue<T>(this._bufferSize);
 	}
 	/**
 	* This function is called to provide the data either
@@ -62,10 +64,21 @@ export class PrefetchService<T> {
 		return this._hotObs$;
 	}
 
-	protected doMoreFetch() {
+	protected doMoreFetch(): boolean {
 		if (this._producer.getNoServeStatus()) {
 			return false;
 		}
 		return !this._queue.isFull();
+	}
+	public clearQueue(): void {
+		this._queue.clear();
+	}
+	public setBufferSize(buffer: number): number {
+		this._bufferSize = buffer;
+		this._queue.setCapacity(this._bufferSize);
+		return buffer;
+	}
+	public getBufferSize(): number {
+		return this._bufferSize;
 	}
 }

@@ -14,7 +14,8 @@
     "core-js": "^2.4.1",
     "ie-shim": "^0.1.0",
     "reflect-metadata": "^0.1.9",
-    "rxjs": "^5.4.3"
+    "rxjs": "5.0.1",
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@types/node": "^7.0.12",
