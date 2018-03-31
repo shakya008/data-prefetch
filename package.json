@@ -1,6 +1,6 @@
 {
   "name": "data-prefetch",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Fetches data from server and stores locally",
   "scripts": {
     "build": "rimraf dist && webpack --progress",
