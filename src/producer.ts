@@ -4,7 +4,7 @@
 * from destination resource like server.
 * @author Shyam Singh<singh.shakya008@gmail.com>
 */
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 export abstract class ProducerService {
 	/**
